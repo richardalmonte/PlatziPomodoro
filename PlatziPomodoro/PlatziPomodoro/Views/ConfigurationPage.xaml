@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PlatziPomodoro.ViewModels;assembly=PlatziPomodoro"
+             x:Class="PlatziPomodoro.Views.ConfigurationPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:ConfigurationPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <Label Text="Pomodoro Duration"/>
+        <Picker ItemsSource="{Binding PomodoroDurations}"
+                SelectedItem="{Binding SelectedPomodoroDuration, Mode=TwoWay}"/>
+        <Label Text="Break Duration"/>
+        <Picker ItemsSource="{Binding BreakDurations}"
+                SelectedItem="{Binding SelectedBreakDuration, Mode=TwoWay}"/>
+    </StackLayout>
+</ContentPage>
