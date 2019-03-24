@@ -12,9 +12,19 @@ namespace PlatziPomodoro
         {
             InitializeComponent();
             //MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+            MessagingCenter.Subscribe<RootPageViewModel>(this, "GoToPomodoro", (a) =>
+            {
+                Detail = new NavigationPage(new PomodoroPage());
+                IsPresented = false;
+            });
             MessagingCenter.Subscribe<RootPageViewModel>(this, "GoToConfiguration", (a) =>
             {
                 Detail = new NavigationPage(new ConfigurationPage());
+                IsPresented = false;
+            });
+            MessagingCenter.Subscribe<RootPageViewModel>(this, "GoToHistory", (a) =>
+            {
+                Detail = new NavigationPage(new HistoryPage());
                 IsPresented = false;
             });
 

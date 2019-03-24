@@ -61,6 +61,16 @@ namespace PlatziPomodoro.ViewModels
                 {
                     MessagingCenter.Send(this, "GoToConfiguration");
                 }
+
+                if (SelectedMenuItem == "History")
+                {
+                    MessagingCenter.Send(this, "GoToHistory");
+                }
+
+                if (SelectedMenuItem == "Pomodoro")
+                {
+                    MessagingCenter.Send(this, "GoToPomodoro");
+                }
             }
         }
 

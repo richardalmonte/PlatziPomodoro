@@ -1,20 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using PlatziPomodoro.Helpers;
 using Xamarin.Forms;
 
 namespace PlatziPomodoro.ViewModels
 {
     public class ConfigurationPageViewModel : NotificationObject
     {
-
         #region Fields
 
         private ObservableCollection<int> pomodoroDurations;
         private ObservableCollection<int> breakDuration;
         private int selectedPomodoroDuration;
         private int selectedBreakDuration;
-        private const string BreakeDuration = "BreakDuration";
-        private const string PomodoroDuration = "PomodoroDuration";
 
         #endregion
 
@@ -94,20 +92,20 @@ namespace PlatziPomodoro.ViewModels
 
         private void LoadConfiguration()
         {
-            if (Application.Current.Properties.ContainsKey(PomodoroDuration))
+            if (Application.Current.Properties.ContainsKey(Literals.PomodoroDuration))
             {
-                SelectedPomodoroDuration = (int)Application.Current.Properties[PomodoroDuration];
+                SelectedPomodoroDuration = (int)Application.Current.Properties[Literals.PomodoroDuration];
             }
 
-            if (Application.Current.Properties.ContainsKey(BreakeDuration))
+            if (Application.Current.Properties.ContainsKey(Literals.BreakDuration))
             {
-                SelectedBreakDuration = (int)Application.Current.Properties[BreakeDuration];
+                SelectedBreakDuration = (int)Application.Current.Properties[Literals.BreakDuration];
             }
         }
 
         private async void SaveCommandExecute()
         {
-            Application.Current.Properties[PomodoroDuration] = SelectedPomodoroDuration;
+            Application.Current.Properties[Literals.PomodoroDuration] = SelectedPomodoroDuration;
             Application.Current.Properties["BreakDuration"] = SelectedBreakDuration;
 
             await Application.Current.SavePropertiesAsync();
