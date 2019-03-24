@@ -13,6 +13,8 @@ namespace PlatziPomodoro.ViewModels
         private ObservableCollection<int> breakDuration;
         private int selectedPomodoroDuration;
         private int selectedBreakDuration;
+        private const string BreakeDuration = "BreakDuration";
+        private const string PomodoroDuration = "PomodoroDuration";
 
         #endregion
 
@@ -70,18 +72,42 @@ namespace PlatziPomodoro.ViewModels
 
         public ConfigurationPageViewModel()
         {
+            LoadPomodoroDurations();
+            LoadBreakDurations();
+            LoadConfiguration();
             SaveCommand = new Command(SaveCommandExecute);
         }
-
 
         #endregion
 
         #region Methods
 
+        private void LoadBreakDurations()
+        {
+            BreakDurations = new ObservableCollection<int>() { 1, 5, 10, 25 };
+        }
+
+        private void LoadPomodoroDurations()
+        {
+            PomodoroDurations = new ObservableCollection<int> { 1, 5, 10, 25 };
+        }
+
+        private void LoadConfiguration()
+        {
+            if (Application.Current.Properties.ContainsKey(PomodoroDuration))
+            {
+                SelectedPomodoroDuration = (int)Application.Current.Properties[PomodoroDuration];
+            }
+
+            if (Application.Current.Properties.ContainsKey(BreakeDuration))
+            {
+                SelectedBreakDuration = (int)Application.Current.Properties[BreakeDuration];
+            }
+        }
 
         private async void SaveCommandExecute()
         {
-            Application.Current.Properties["PomodoroDuration"] = SelectedPomodoroDuration;
+            Application.Current.Properties[PomodoroDuration] = SelectedPomodoroDuration;
             Application.Current.Properties["BreakDuration"] = SelectedBreakDuration;
 
             await Application.Current.SavePropertiesAsync();

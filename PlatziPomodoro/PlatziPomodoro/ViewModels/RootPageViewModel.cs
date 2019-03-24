@@ -40,10 +40,14 @@ namespace PlatziPomodoro.ViewModels
 
         public RootPageViewModel()
         {
-            MenuItems = new ObservableCollection<string>();
-            MenuItems.Add("Pomodoro");
-            MenuItems.Add("History");
-            MenuItems.Add("Configuration");
+            MenuItems = new ObservableCollection<string>
+            {
+                "Pomodoro",
+                "History",
+                "Configuration"
+            };
+
+            PropertyChanged += RootPageViewModel_PropertyChanged;
         }
         #endregion
 
